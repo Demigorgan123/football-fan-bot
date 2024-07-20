@@ -1,6 +1,6 @@
 // components/Chat.tsx
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Message {
   isUser: boolean;
@@ -10,6 +10,38 @@ interface Message {
 const Chat: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
+  const [assistantId, setAssistantId] = useState('');
+  const [threadId, setThreadId] = useState('');
+
+  const initChat = async () => {
+    try {
+      const response1 = await fetch('/api/assistant', {
+        method: 'POST',
+      });
+      if (!response1.ok) {
+        throw new Error('Failed to fetch assistant ID');
+      }
+      const assistantId = await response1.json();
+      console.log(assistantId);
+      setAssistantId(assistantId);
+
+      const response2 = await fetch('/api/assistant/threads', {
+        method: 'POST',
+      });
+      if (!response2.ok) {
+        throw new Error('Failed to fetch thread ID');
+      }
+      const threadId = await response2.json();
+      console.log(threadId);
+      setThreadId(threadId);
+    } catch (error) {
+      console.error('Error initializing chat:', error);
+    }
+  };
+
+  useEffect(() => {
+    initChat();
+  }, []);
 
   const handleSend = () => {
     if (input.trim()) {
