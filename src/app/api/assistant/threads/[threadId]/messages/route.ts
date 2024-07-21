@@ -1,5 +1,4 @@
 import { openai } from '../../../../../openai';
-
 import { NextRequest } from 'next/server';
 
 export async function POST(
