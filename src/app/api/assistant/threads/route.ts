@@ -1,4 +1,4 @@
-import { openai } from '../../../openai';
+import { openai } from '@/app/openai';
 
 export async function POST() {
   const thread = await openai.beta.threads.create();
