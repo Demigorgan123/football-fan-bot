@@ -2,7 +2,7 @@
 import { AssistantStream } from 'openai/lib/AssistantStream.mjs';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import ronaldo from '@/app/images/ronaldo.png';
+import ronaldo from '../../public/images/ronaldo.png';
 import { Quicksand } from 'next/font/google';
 
 type Message = {
@@ -28,7 +28,6 @@ const Chat: React.FC = () => {
         throw new Error('Failed to fetch assistant ID');
       }
       const assistantId = await response1.json();
-      // console.log(assistantId.assistantId);
       setAssistantId(assistantId.assistantId);
 
       const response2 = await fetch('/api/assistant/threads', {
@@ -38,7 +37,6 @@ const Chat: React.FC = () => {
         throw new Error('Failed to fetch thread ID');
       }
       const threadId = await response2.json();
-      // console.log(threadId.threadId);
       setThreadId(threadId.threadId);
     } catch (error) {
       console.error('Error initializing chat:', error);
