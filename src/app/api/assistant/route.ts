@@ -1,4 +1,4 @@
-import { openai } from '../../openai'
+import { openai } from '@/app/openAi';
 export async function POST() {
   const assistant = await openai.beta.assistants.create({
     name: 'FanBoy',
