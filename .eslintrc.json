@@ -25,6 +25,7 @@
   ],
   "plugins": ["prettier", "@typescript-eslint", "react", "react-hooks"],
   "rules": {
+      "@typescript-eslint/no-unused-vars":"warn",
       "prefer-const": "warn",
       "no-var": "warn",
       "no-unused-vars": "warn",
@@ -63,4 +64,5 @@
           "version": "detect"
       }
   }
+
 }
