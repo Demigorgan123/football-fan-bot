@@ -95,7 +95,9 @@ const Chat: React.FC = () => {
         }),
       },
     );
-    const stream = AssistantStream.fromReadableStream(response.body);
+    const respBody: ReadableStream<Uint8Array> | null = response.body;
+    if (respBody === null) return;
+    const stream = AssistantStream.fromReadableStream(respBody);
     handleReadableStream(stream);
   };
   const handleSend = () => {
